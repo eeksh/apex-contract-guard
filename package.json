@@ -1,0 +1,65 @@
+{
+  "name": "agentia-cli-apex-contract-guard",
+  "description": "Agentia CLI oclif plugin",
+  "version": "0.1.0",
+  "author": "Deeksha chamoli",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "license": "MIT",
+  "keywords": [
+    "oclif-plugin",
+    "agentia"
+  ],
+  "files": [
+    "/dist",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@copado/agentia-plugin-sdk": "^0.1.1"
+  },
+  "peerDependencies": {
+    "@oclif/core": "^4"
+  },
+  "devDependencies": {
+    "@oclif/core": "^4",
+    "@types/node": "^22",
+    "oclif": "^4",
+    "shx": "^0.3.3",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "agentia": {
+    "hostApi": 1,
+    "requires": [
+      "auth.status",
+      "format.table",
+      "work.getWorkItem"
+    ],
+    "permissions": {
+      "network": [],
+      "files": "none",
+      "commands": [],
+      "env": []
+    }
+  },
+  "oclif": {
+    "bin": "agentia",
+    "dirname": "agentia-cli",
+    "commands": "./dist/commands",
+    "topics": {
+      "sample": {
+        "description": "Sample plugin commands"
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "clean": "shx rm -f oclif.manifest.json",
+    "prepack": "npm run build && oclif manifest",
+    "postpack": "npm run clean"
+  }
+}
